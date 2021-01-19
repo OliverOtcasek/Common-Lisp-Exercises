@@ -1,31 +1,22 @@
 (setq ext:*warn-on-redefinition* nil)
 
-; Project 3 by Oliver Otcasek
-
-
-
-
+; Common Lisp Exercises by Oliver Otcasek
 
 
 ;List functions
 
 (defun append (l1 l2) 
 	(if (null l1) l2
-	(cons (car l1) (append(cdr l1) l2))
-	))
+	(cons (car l1) (append(cdr l1) l2))))
 
 (defun reverse (l)
 	(if (null l) 
 		nil
-		(append (reverse (cdr l)) (list (car l))))
-	)
+		(append (reverse (cdr l)) (list (car l)))))
 
 (defun addtoend (a l)
 	(if (null l) nil
-		(reverse (cons a (reverse l))
-	)
-	)
-	)
+		(reverse (cons a (reverse l)))))
 
 (defun remove-all (a l)
 	(if (null l)
@@ -33,54 +24,39 @@
 		(if (equal (car l) a)
 			(remove-all a (cdr l))
 			
-			(cons (car l) (remove-all a (cdr l))))
-	)
-)
+			(cons (car l) (remove-all a (cdr l))))))
 
 (defun map (q l)
 	(if (null l) nil
-		(cons (funcall q (car l)) (map q (cdr l)))
-
-	)
-	)
+		(cons (funcall q (car l)) (map q (cdr l)))))
 
 ;Set functions
 
 (defun member(a s)
 	(if (or (null s) (null a)) nil
 		(if (equal (car s) a) t
-			(member a (cdr s))))
-	)
-
+			(member a (cdr s)))))
 
 
 (defun cardinality (a)
-	(cardinality-help a 0)
-	)
-
+	(cardinality-help a 0))
 
 
 (defun cardinality-help (a b)
 	(if (null a) b
-		(cardinality-help (cdr a) (+ b 1)))
-	)
-
-
+		(cardinality-help (cdr a) (+ b 1))))
 
 
 (defun difference(s a)
 	(if (or (null s) (null a)) nil
 		(if (not (member (car s) a)) (car s)
-			(difference (cdr s) (cdr a)))
-		)
-	)
+			(difference (cdr s) (cdr a)))))
 
 (defun intersection(s a)
 	(if (or (null s) (null a)) nil
 		(if (member (car a) s) ;Gotta love O(n^2)!
 			(cons (car a) (intersection (cdr s) (cdr a)))
-			(intersection (cdr s) (cdr a))))
-	)
+			(intersection (cdr s) (cdr a)))))
 
 
 
@@ -93,14 +69,12 @@
 
 (defun mod(n s) ;n mod s
 	(if(> s n) n
-		(- n (* s (remo (/ n s) 1))))
-	)
+		(- n (* s (remo (/ n s) 1)))))
 
 
 (defun factorial(i)
 	(if (equal i 1) 1
-		(* i (factorial (- i 1))))
-	)
+		(* i (factorial (- i 1)))))
 
 (defun gcd(n l) ; Euclid's algorithm
 	(if (equal n 0) l
@@ -109,14 +83,12 @@
 (defun primeph (a b)
 	(if (>= b a) t
 		(if (equal (mod a b) 0) nil
-			(primeph a (+ b 1))))
-	)
+			(primeph a (+ b 1)))))
 
 (defun primep (a) ; 4111 is the max this can find without a stack overflow.
 	(if (equal a 1) ; In the project, 1 is not considered a prime.
 		nil
-		(primeph a 2))
-	)
+		(primeph a 2)))
 	
 
 
@@ -139,24 +111,19 @@
 (defun perfect_recursive(n i)
 	(if (equal n i) 0
 		(if (equal 0 (mod n i)) (+ (perfect_recursive n (+ i 1)) i)
-			(perfect_recursive n (+ i 1))
-
-	)))
+			(perfect_recursive n (+ i 1)))))
 
 
 
 (defun perfectp(n)
 	(if (equal (perfect_recursive n 1) n) t
-		nil)
-	)
+		nil))
 
 (defun abundantp (n)
-	(if (> (perfect_recursive n 1) n) t
-		nil))
+	(if (> (perfect_recursive n 1) n) t nil))
 
 (defun deficientp (n)
-	(if (< (perfect_recursive n 1) n) t
-		nil))
+	(if (< (perfect_recursive n 1) n) t nil))
 
 
 
@@ -175,11 +142,7 @@
 		(format t "(~a ~a) = ~a~%" fun a (funcall fun a))
 		(if (eq c nil)
 			(format t "(~a ~a ~a) = ~a~%" fun a b (funcall fun a b))
-            (format t "(~a ~a ~a ~a) = ~a~%" fun a b c (funcall fun a b c))
-			)
-		)
-	t
-	)
+            (format t "(~a ~a ~a ~a) = ~a~%" fun a b c (funcall fun a b c))))t)
 
 
 
@@ -227,13 +190,7 @@
 	(format t "~%Testing abundantp function.~%")
 	(REPL_1_arg `abundantp "~%Please input a number or type \"quit\" to quit: ")
 	(format t "~%Testing deficientp function.~%")
-	(REPL_1_arg `deficientp "~%Please input a number or type \"quit\" to quit: ")
-	t
-
-
-
-
-	)
+	(REPL_1_arg `deficientp "~%Please input a number or type \"quit\" to quit: ")t)
 
 
 
@@ -243,19 +200,10 @@
 	(format t b)
 	(finish-output nil)
 	(if (repl-manager a (read) nil nil)
-		(REPL_1_arg a b))
-	)
+		(REPL_1_arg a b)))
 
 (defun REPL_2_args (a b)
 	(format t b)
 	(finish-output nil)
 	(if (repl-manager a (read) (read) nil)
-		(REPL_2_args a b))
-	)
-
-
-
-
-
-
-
+		(REPL_2_args a b)))
