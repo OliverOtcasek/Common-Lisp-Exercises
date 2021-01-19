@@ -1,7 +1,7 @@
 Common Lisp Exercises by Oliver Otcasek
 
-For this project, I have created 5 list functions, 4 set functions, 4 math functions, and 3 required
-math functions in the Lisp programming language using functional programming and recursion. 
+For this project, I have created 5 list functions, 4 set functions, and 7 math functions 
+in the Lisp programming language using purely functional programming techniques based around recursion. 
 
 To run the main part of the program, run the "main" function as (main). 
 
