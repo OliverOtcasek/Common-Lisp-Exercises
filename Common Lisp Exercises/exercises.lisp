@@ -102,18 +102,10 @@
 	(nth-primep a 2 0))
 
 
-
-
-
-;required
-
-
 (defun perfect_recursive(n i)
 	(if (equal n i) 0
 		(if (equal 0 (mod n i)) (+ (perfect_recursive n (+ i 1)) i)
 			(perfect_recursive n (+ i 1)))))
-
-
 
 (defun perfectp(n)
 	(if (equal (perfect_recursive n 1) n) t
